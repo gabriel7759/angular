@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex4</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+</head>
+<body>
+
+	<div ng-app="" ng-init="myCol='lightblue';quantity=1;cost=5;firstName='Gabriel';lastName='Velazquez'; person={firstName: 'Gabriel', lastName: 'Velazquez' }">
+		<p> My first expression: {{5 + 5}}</p>
+
+		<input style="background-color: {{myCol}}" ng-model="myCol" value="{{myCol}}" />
+
+		<p>Total in dollar {{ quantity * cost }}</p>
+		<p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+		<p>The name is {{ firstName + " " + lastName }}</p>
+		<p>The name is <span ng-bind="firstName + ' ' + lastName"></span></p>
+		<p>The name is {{ person.firstName }}</p>
+	</div>
+
+</body>
+</html>

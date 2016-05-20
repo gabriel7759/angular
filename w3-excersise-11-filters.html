@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex11</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>	
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="myCtrl1">
+		<p>The name is {{lastName | uppercase}} *uppercase</p>
+		<p>The name is {{lastName | lowercase}} *lowercase</p>
+		<ul>
+			<li ng-repeat="x in names | orderBy:'country'">{{ x.name + ', '+ x.country }}</li>
+		</ul>
+		<p>The price is: {{ price | currency }}</p>
+		<ul>
+			<li ng-repeat="x in names | filter: 'i'">{{ x.name + ', ' + x.country }}</li>
+		</ul>
+		<hr />
+		<input type="text" ng-model="filterText" />
+		<ul>
+			<li ng-repeat="x in names | filter: filterText">{{ x.name + ', ' + x.country }}</li>
+		</ul>
+		<hr />
+		<table border="1" width="900">
+			<tr>
+				<th ng-click="orderByFun('name')">Name</th>
+				<th ng-click="orderByFun('country')">Country</th>
+			</tr>
+			<tr ng-repeat="x in names | orderBy: orderByOpt">
+				<td>{{ x.name }}</td>
+				<td>{{ x.country }}</td>
+			</tr>
+		</table>
+		<hr />
+		<ul>
+			<li ng-repeat="x in names">
+				{{x.name | myFormat}}
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+
+		var app = angular.module('myApp', []);
+
+		app.controller('myCtrl1', function ($scope) {
+			$scope.lastName = "Velazquez";
+			$scope.names = [
+				{ name: 'Gabriel', country: 'Mexico' },
+				{ name: 'Leo', country: 'Norway' },
+				{ name: 'Dinero Gi', country: 'India' },
+			];
+			$scope.orderByFun = function (x) {
+				$scope.orderByOpt = x;
+			};
+			$scope.price = 1000;
+		});
+
+		app.filter('myFormat', function () {
+			return function (x) {
+				var i, c, txt = "";
+				for (i = 0; i < x.length; i++) {
+					c = x[i];
+					if (i % 2 == 0) {
+						c = c.toUpperCase();
+					}
+					txt += c;
+				}
+				return txt;
+			};
+		});
+	</script>
+
+</body>
+</html>

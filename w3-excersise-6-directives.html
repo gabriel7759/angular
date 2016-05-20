@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex6</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-init="names=['Jani', 'Hege', 'Kai'];names2=[
+		 {name: 'Jani', country: 'Norway'},
+		 {name: 'Hege', country: 'Sweden'},
+		 {name: 'Kai', country: 'Denmark'}
+		 ]">
+		<ul>
+			<li ng-repeat="row in names">{{row}}</li>
+		</ul>
+		<hr />
+		<ul>
+			<li ng-repeat="row in names2">{{ row.name + " " + row.country }}</li>
+		</ul>
+	</div>
+
+	<hr />
+
+	<w3-test-directive></w3-test-directive>
+
+	<script type="text/javascript">
+
+		var app = angular.module("myApp", []);
+
+		app.directive("w3TestDirective", function () {
+			return { template: "<h1>Made by a directive!</h1>" };
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex8</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+	<script type="text/javascript">
+
+		var app = angular.module("myApp", []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.firstName = 'Gabriel';
+			$scope.lastName = 'Velazquez';
+			$scope.changeName = function () {
+				$scope.firstname = "Nelly";
+			}
+		});
+
+	</script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+	<p ng-bind="firstName"></p>
+	
+	<p>First Name: {{firstName}}</p>
+
+	<input ng-model="firstName" />
+
+	<hr />
+
+	<h1 ng-click="changeName()">{{firstName}}</h1>
+
+</body>
+</html>

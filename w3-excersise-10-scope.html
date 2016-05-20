@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex10</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>	
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="myCtrl1">
+		<h1>{{carName}}</h1>
+	</div>
+
+	<hr />
+
+	<div ng-controller="myCtrl2">
+		<input ng-model="name" />
+		<h1>My name is {{name}}</h1>
+	</div>
+
+	<hr />
+
+	<div ng-controller="myCtrl3">
+		<ul>
+			<li ng-repeat="row in names">{{row}}</li>
+		</ul>
+	</div>
+
+	<hr />
+
+	<p>The rootScope's favorite color:</p>
+	<h1>{{color}}</h1>
+
+	<div ng-controller="myCtrl4">
+		<p>The scope of the controller's favorite color:</p>
+		<h1>{{color}}</h1>
+	</div>
+
+	<p>The rootScope's favorite color is still:</p>
+	<h1>{{color}}</h1>
+
+	<script type="text/javascript">
+
+		var app = angular.module('myApp', []);
+
+		app.run(function ($rootScope) {
+			$rootScope.color = "blue";
+		});
+
+		app.controller('myCtrl1', function ($scope) {
+			$scope.carName = "Volvo";
+		});
+
+		app.controller('myCtrl2', function ($scope) {
+			$scope.name = "Gabriel Velazquez Rios";
+		});
+
+		app.controller('myCtrl3', function ($scope) {
+			$scope.names = ["Emil", "Tobias", "Linus"];
+		});
+
+		app.controller('myCtrl4', function ($scope) {
+			$scope.color = "red";
+		});
+
+	</script>
+
+</body>
+</html>
