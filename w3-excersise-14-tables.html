@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex14</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+	<style>
+		table, th, td { border: 1px solid grey; border-collapse: collapse; padding: 5px; }
+			table tr:nth-child(odd) { background-color: #f1f1f1; }
+			table tr:nth-child(even) { background-color: #fff; }
+	</style>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="myCtrl">
+		<table>
+			<tr ng-repeat="x in names | orderBy: 'Country'">
+				<td>{{ $index + 1 }}</td>
+				<td>{{ x.Name }}</td>
+				<td>{{ x.Country }}</td>
+				<td>{{ $even + '|' + $odd }}</td>
+			</tr>
+		</table>
+	</div>
+	
+	
+
+	<script type="text/javascript">
+
+		var app = angular.module('myApp', []);
+
+		app.controller('myCtrl', function ($scope, $http) {
+			$http.get("dummy_customer.html").then(function (response) {
+				$scope.names = response.data.records;
+			});
+		});
+
+	</script>
+
+</body>
+</html>
