@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>Angular .::. Ex15</title>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="myCtrl">
+
+		<select ng-model="selectedName" ng-options="x for x in names"></select>
+		<p>***Dropdowns made with ng-options allows the selected value to be an object, while dropdowns made from ng-repeat has to be a string.</p>
+
+		<hr />
+
+		<select>
+			<option ng-repeat="x in names">{{ x }}</option>
+		</select>
+
+		<hr />
+
+		<select ng-model="selectedCar">
+			<option ng-repeat="x in cars" value="{{x.model}}">{{x.model}}</option>
+		</select>
+		<h3>{{selectedCar}}</h3>
+
+		<hr />
+
+		<select ng-model="selectedCar2" ng-options="x.model for x in cars">
+		</select>
+		<h3>You seleted: {{selectedCar2.model}}</h3>
+		<p>It's color: {{selectedCar2.color}}</p>
+
+	</div>
+
+
+
+	<script type="text/javascript">
+
+		var app = angular.module("myApp", []);
+
+		app.controller("myCtrl", function ($scope) {
+			$scope.names = ["Emil", "Tobias", "Linus"];
+
+			$scope.cars = [
+				{ model: "Ford Mustang", color: "red" },
+				{ model: "Fiat 500", color: "white" },
+				{ model: "Volvo XC90", color: "black" }
+			];
+		});
+
+	</script>
+
+</body>
+</html>
